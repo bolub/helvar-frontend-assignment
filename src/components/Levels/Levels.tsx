@@ -40,7 +40,19 @@ export const Levels = () => {
           <HelvarSlider.Slider
             label='Occupied'
             defaultValue={defaultValues.occupied}
-            onChange={(value) => setOccupied(value)}
+            onChange={(value) => {
+              //if occupied is less than power save, set power save to occupied
+              if (value <= powerSave) {
+                setPowerSave(value);
+              }
+
+              //if occupied is less than minimum, set minimum to occupied
+              if (value <= minimum) {
+                setMinimum(value);
+              }
+
+              setOccupied(value);
+            }}
             value={occupied}
           />
         </Box>
@@ -51,7 +63,19 @@ export const Levels = () => {
           <HelvarSlider.Slider
             label='Power save'
             defaultValue={defaultValues.powerSave}
-            onChange={(value) => setPowerSave(value)}
+            onChange={(value) => {
+              //if PS is greater than occupied, set occupied to PS
+              if (value >= occupied) {
+                setOccupied(value);
+              }
+
+              //if PS is less than minimum, set minimum to PS
+              if (value <= minimum) {
+                setMinimum(value);
+              }
+
+              setPowerSave(value);
+            }}
             value={powerSave}
           />
         </Box>
@@ -62,7 +86,19 @@ export const Levels = () => {
           <HelvarSlider.Slider
             label='Minimum'
             defaultValue={defaultValues.minimum}
-            onChange={(value) => setMinimum(value)}
+            onChange={(value) => {
+              //if minimum is greater than occupied, set occupied to minimum
+              if (value >= occupied) {
+                setOccupied(value);
+              }
+
+              //if minimum is greater than power save, set power save to minimum
+              if (value >= powerSave) {
+                setPowerSave(value);
+              }
+
+              setMinimum(value);
+            }}
             value={minimum}
           />
         </Box>
