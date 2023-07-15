@@ -6,7 +6,7 @@ import {
   SliderFilledTrack,
   SliderThumb,
 } from '@chakra-ui/react';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 interface LabelProps {
   title: string;
@@ -17,7 +17,7 @@ interface CustomSliderProps {
   label: string;
   value: number;
   defaultValue?: number;
-  onChange?: (value: number) => void;
+  onChange: (value: number) => void;
 }
 
 const Label: FC<LabelProps> = ({ title, value }) => {
@@ -42,28 +42,15 @@ const CustomSlider: FC<CustomSliderProps> = ({
   defaultValue,
   onChange,
 }) => {
-  const [step, setStep] = useState<number>(1);
-
-  const sliderOnChange = (value: number) => {
-    if (value >= 1) {
-      setStep(5);
-    } else {
-      setStep(1);
-    }
-
-    if (onChange) {
-      onChange(value);
-    }
-  };
-
   return (
     <Slider
       aria-label={label}
+      id={label}
       colorScheme='red'
       defaultValue={defaultValue}
       value={value}
-      onChange={sliderOnChange}
-      step={step}
+      onChange={onChange}
+      step={5}
     >
       <SliderTrack bg='red.200'>
         <SliderFilledTrack bg='tomato' />
