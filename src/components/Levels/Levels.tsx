@@ -101,7 +101,7 @@ export const Levels = () => {
         </Box>
       </VStack>
 
-      <Flex mt={8} justifyContent='space-between' w='full'>
+      <Flex mt={16} justifyContent='space-between' w='full'>
         <Button size='lg' onClick={onCancel}>
           Cancel
         </Button>

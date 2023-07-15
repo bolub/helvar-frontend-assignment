@@ -4,7 +4,7 @@ import { Levels } from './components/Levels/Levels';
 function App() {
   return (
     <>
-      <chakra.header mt={40}>
+      <chakra.header mt={{ base: 20, md: 40 }}>
         <Container maxW='md'>
           <chakra.h1 fontWeight='bold' fontSize='2xl'>
             Set levels
