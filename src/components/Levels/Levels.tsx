@@ -38,12 +38,10 @@ export const Levels = () => {
             label='Occupied'
             defaultValue={defaultLevelValues.occupied}
             onChange={(newValue) => {
-              //if occupied is less than power save, set power save to occupied
               if (newValue <= powerSave) {
                 setPowerSave(newValue);
               }
 
-              //if occupied is less than minimum, set minimum to occupied
               if (newValue <= minimum) {
                 setMinimum(newValue);
               }
@@ -61,12 +59,10 @@ export const Levels = () => {
             label='Power save'
             defaultValue={defaultLevelValues.powerSave}
             onChange={(newValue) => {
-              //if PS is greater than occupied, set occupied to PS
               if (newValue >= occupied) {
                 setOccupied(newValue);
               }
 
-              //if PS is less than minimum, set minimum to PS
               if (newValue <= minimum) {
                 setMinimum(newValue);
               }
@@ -84,12 +80,10 @@ export const Levels = () => {
             label='Minimum'
             defaultValue={defaultLevelValues.minimum}
             onChange={(newValue) => {
-              //if minimum is greater than occupied, set occupied to minimum
               if (newValue >= occupied) {
                 setOccupied(newValue);
               }
 
-              //if minimum is greater than power save, set power save to minimum
               if (newValue >= powerSave) {
                 setPowerSave(newValue);
               }
