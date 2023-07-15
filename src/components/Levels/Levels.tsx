@@ -37,18 +37,18 @@ export const Levels = () => {
           <HelvarSlider.Slider
             label='Occupied'
             defaultValue={defaultLevelValues.occupied}
-            onChange={(value) => {
+            onChange={(newValue) => {
               //if occupied is less than power save, set power save to occupied
-              if (value <= powerSave) {
-                setPowerSave(value);
+              if (newValue <= powerSave) {
+                setPowerSave(newValue);
               }
 
               //if occupied is less than minimum, set minimum to occupied
-              if (value <= minimum) {
-                setMinimum(value);
+              if (newValue <= minimum) {
+                setMinimum(newValue);
               }
 
-              setOccupied(value);
+              setOccupied(newValue);
             }}
             value={occupied}
           />
@@ -60,18 +60,18 @@ export const Levels = () => {
           <HelvarSlider.Slider
             label='Power save'
             defaultValue={defaultLevelValues.powerSave}
-            onChange={(value) => {
+            onChange={(newValue) => {
               //if PS is greater than occupied, set occupied to PS
-              if (value >= occupied) {
-                setOccupied(value);
+              if (newValue >= occupied) {
+                setOccupied(newValue);
               }
 
               //if PS is less than minimum, set minimum to PS
-              if (value <= minimum) {
-                setMinimum(value);
+              if (newValue <= minimum) {
+                setMinimum(newValue);
               }
 
-              setPowerSave(value);
+              setPowerSave(newValue);
             }}
             value={powerSave}
           />
@@ -83,18 +83,18 @@ export const Levels = () => {
           <HelvarSlider.Slider
             label='Minimum'
             defaultValue={defaultLevelValues.minimum}
-            onChange={(value) => {
+            onChange={(newValue) => {
               //if minimum is greater than occupied, set occupied to minimum
-              if (value >= occupied) {
-                setOccupied(value);
+              if (newValue >= occupied) {
+                setOccupied(newValue);
               }
 
               //if minimum is greater than power save, set power save to minimum
-              if (value >= powerSave) {
-                setPowerSave(value);
+              if (newValue >= powerSave) {
+                setPowerSave(newValue);
               }
 
-              setMinimum(value);
+              setMinimum(newValue);
             }}
             value={minimum}
           />
