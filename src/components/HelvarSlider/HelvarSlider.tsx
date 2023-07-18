@@ -17,6 +17,7 @@ interface CustomSliderProps {
   label: string;
   value: number;
   defaultValue?: number;
+  testId: string;
   onChange: (value: number) => void;
 }
 
@@ -41,6 +42,7 @@ const CustomSlider: FC<CustomSliderProps> = ({
   value,
   defaultValue,
   onChange,
+  testId,
 }) => {
   // TODO: Write a unit test for this function
   const getNearestStepValue = (value: number) => {
@@ -60,13 +62,15 @@ const CustomSlider: FC<CustomSliderProps> = ({
       colorScheme='red'
       defaultValue={defaultValue}
       value={value}
-      onChange={(value) => onChange(getNearestStepValue(value))}
+      // onChange={(value) => onChange(getNearestStepValue(value))}
+      onChange={onChange}
       max={100}
+      data-cy={`${testId}-container`}
     >
       <SliderTrack bg='red.200'>
         <SliderFilledTrack bg='tomato' />
       </SliderTrack>
-      <SliderThumb bgColor='red.500' />
+      <SliderThumb bgColor='red.500' data-cy={testId} />
     </Slider>
   );
 };
