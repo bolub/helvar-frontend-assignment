@@ -49,6 +49,7 @@ export const Levels = () => {
               setOccupied(newValue);
             }}
             value={occupied}
+            testId='occupied-slider'
           />
         </Box>
 
@@ -70,6 +71,7 @@ export const Levels = () => {
               setPowerSave(newValue);
             }}
             value={powerSave}
+            testId='power-save-slider'
           />
         </Box>
 
@@ -91,15 +93,16 @@ export const Levels = () => {
               setMinimum(newValue);
             }}
             value={minimum}
+            testId='minimum-slider'
           />
         </Box>
       </VStack>
 
       <Flex mt={16} justifyContent='space-between' w='full'>
-        <Button size='lg' onClick={onCancel}>
+        <Button data-cy='cancel' size='lg' onClick={onCancel}>
           Cancel
         </Button>
-        <Button size='lg' colorScheme='red' onClick={onApply}>
+        <Button data-cy='apply' size='lg' colorScheme='red' onClick={onApply}>
           Apply
         </Button>
       </Flex>
