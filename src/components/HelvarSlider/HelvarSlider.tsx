@@ -42,6 +42,7 @@ const CustomSlider: FC<CustomSliderProps> = ({
   defaultValue,
   onChange,
 }) => {
+  // TODO: Write a unit test for this function
   const getNearestStepValue = (value: number) => {
     if (value <= 1) return value;
     if (value === 2) return 1;
