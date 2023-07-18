@@ -42,6 +42,15 @@ const CustomSlider: FC<CustomSliderProps> = ({
   defaultValue,
   onChange,
 }) => {
+  const getNearestStepValue = (value: number) => {
+    if (value <= 1) return value;
+    if (value === 2) return 5;
+    if (value >= 100) return 100;
+
+    const nearestStep = Math.round(value / 5) * 5;
+    return nearestStep;
+  };
+
   return (
     <Slider
       aria-label={label}
@@ -49,8 +58,8 @@ const CustomSlider: FC<CustomSliderProps> = ({
       colorScheme='red'
       defaultValue={defaultValue}
       value={value}
-      onChange={onChange}
-      step={5}
+      onChange={(value) => onChange(getNearestStepValue(value))}
+      max={100}
     >
       <SliderTrack bg='red.200'>
         <SliderFilledTrack bg='tomato' />
