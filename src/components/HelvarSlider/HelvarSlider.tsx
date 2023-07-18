@@ -44,10 +44,11 @@ const CustomSlider: FC<CustomSliderProps> = ({
 }) => {
   const getNearestStepValue = (value: number) => {
     if (value <= 1) return value;
-    if (value === 2) return 5;
+    if (value === 2) return 1;
     if (value >= 100) return 100;
 
     const nearestStep = Math.round(value / 5) * 5;
+
     return nearestStep;
   };
 
