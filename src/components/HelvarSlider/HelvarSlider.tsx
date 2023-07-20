@@ -45,15 +45,15 @@ const CustomSlider: FC<CustomSliderProps> = ({
   testId,
 }) => {
   // TODO: Write a unit test for this function
-  const getNearestStepValue = (value: number) => {
-    if (value <= 1) return value;
-    if (value === 2) return 1;
-    if (value >= 100) return 100;
+  // const getNearestStepValue = (value: number) => {
+  //   if (value <= 1) return value;
+  //   if (value === 2) return 1;
+  //   if (value >= 100) return 100;
 
-    const nearestStep = Math.round(value / 5) * 5;
+  //   const nearestStep = Math.round(value / 5) * 5;
 
-    return nearestStep;
-  };
+  //   return nearestStep;
+  // };
 
   return (
     <Slider
