@@ -53,24 +53,25 @@ const CustomSlider: FC<CustomSliderProps> = ({
 
   useEffect(() => {
     const getIncrementalValue = (value: number) => {
-      const isDraggingUp = value > defaultValue;
-      const isDraggingDown = value < defaultValue;
+      const isMovingUp = value > defaultValue;
+      const isMovingDown = value < defaultValue;
 
-      if (isDraggingUp) {
+      if (isMovingUp) {
         if (value <= 1) return 1;
         if (value === 2) return 3;
       }
 
-      if (isDraggingDown) {
-        if (value <= 1) return 1;
-        if (value === 5) return 4;
+      if (isMovingDown && value <= 1) {
+        return 1;
       }
+
+      if (value === 5) return 4;
 
       return 5;
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (value === 0) return;
+      if (value === 0 || value === 100) return;
 
       const incrementValue = getIncrementalValue(value);
       const isMovingLeftOrDown =
