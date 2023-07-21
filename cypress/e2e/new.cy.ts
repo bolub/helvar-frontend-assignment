@@ -1,3 +1,5 @@
+import { defaultLevelValues } from '../../src/utils/levels';
+
 const moveSlider = (args: {
   times: number;
   direction: 'left' | 'right';
@@ -10,41 +12,61 @@ const moveSlider = (args: {
   }
 };
 
-const checkSliderValue = (args: { selector: string; value: string }) => {
-  cy.get(`[data-cy=${args.selector}]`)
-    .children('input')
-    .should('have.value', args.value);
+const checkSliderValue = (args: {
+  selector: string;
+  value: string | number;
+}) => {
+  cy.get(`[data-cy=${args.selector}]`).should(
+    'have.attr',
+    'aria-valuenow',
+    args.value
+  );
 };
 
 describe('Levels tests', () => {
   it('Occupied slider values change correctly', () => {
     cy.visit('/');
 
-    moveSlider({ times: 5, direction: 'right', selector: 'occupied-slider' });
-    checkSliderValue({ selector: 'occupied-slider-container', value: '85' });
+    checkSliderValue({
+      selector: 'occupied-slider',
+      value: defaultLevelValues.occupied,
+    });
+
+    moveSlider({ times: 2, direction: 'right', selector: 'occupied-slider' });
+    checkSliderValue({ selector: 'occupied-slider', value: '90' });
 
     moveSlider({ times: 10, direction: 'left', selector: 'occupied-slider' });
-    checkSliderValue({ selector: 'occupied-slider-container', value: '75' });
+    checkSliderValue({ selector: 'occupied-slider', value: '40' });
   });
 
   it('Power save slider values change correctly', () => {
     cy.visit('/');
 
+    checkSliderValue({
+      selector: 'power-save-slider',
+      value: defaultLevelValues.powerSave,
+    });
+
     moveSlider({ times: 5, direction: 'right', selector: 'power-save-slider' });
-    checkSliderValue({ selector: 'power-save-slider-container', value: '25' });
+    checkSliderValue({ selector: 'power-save-slider', value: '45' });
 
     moveSlider({ times: 10, direction: 'left', selector: 'power-save-slider' });
-    checkSliderValue({ selector: 'power-save-slider-container', value: '15' });
+    checkSliderValue({ selector: 'power-save-slider', value: '0' });
   });
 
   it('Minimum slider values change correctly', () => {
     cy.visit('/');
 
-    moveSlider({ times: 10, direction: 'right', selector: 'minimum-slider' });
-    checkSliderValue({ selector: 'minimum-slider-container', value: '10' });
+    checkSliderValue({
+      selector: 'minimum-slider',
+      value: defaultLevelValues.minimum,
+    });
 
-    moveSlider({ times: 10, direction: 'left', selector: 'minimum-slider' });
-    checkSliderValue({ selector: 'minimum-slider-container', value: '0' });
+    moveSlider({ times: 10, direction: 'right', selector: 'minimum-slider' });
+    checkSliderValue({ selector: 'minimum-slider', value: '45' });
+
+    moveSlider({ times: 9, direction: 'left', selector: 'minimum-slider' });
+    checkSliderValue({ selector: 'minimum-slider', value: '1' });
   });
 
   it('Checks if the correct values are logged', () => {
