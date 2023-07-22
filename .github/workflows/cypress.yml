@@ -10,11 +10,13 @@ jobs:
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: Capture Vercel preview URL
+      - name: vercel-preview-url
+        uses: zentered/vercel-preview-url@v1.1.9
         id: vercel_preview_url
-        uses: aaron-binary/vercel-preview-url-action@v0.0.3
+        env:
+          VERCEL_TOKEN: mxgIOz3xWepIJJAiVw34hyDF
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          vercel_project_id: 'prj_Q5WiLZY7AU1kkZPt5axluoNaJI31'
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
