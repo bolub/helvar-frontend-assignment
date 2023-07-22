@@ -1,31 +1,45 @@
-import { VStack, Box, Flex, Button } from '@chakra-ui/react';
+import { VStack, Box, Flex, Button, useDisclosure } from '@chakra-ui/react';
 import { HelvarSlider } from '../HelvarSlider/HelvarSlider';
 import { useState } from 'react';
 import { defaultLevelValues } from '../../utils/levels';
+import { ResultsModal } from '../ResultsModal/ResultsModal';
 
 export const Levels = () => {
-  const [occupied, setOccupied] = useState<number>(defaultLevelValues.occupied);
-  const [powerSave, setPowerSave] = useState<number>(
-    defaultLevelValues.powerSave
-  );
-  const [minimum, setMinimum] = useState<number>(defaultLevelValues.minimum);
+  const modalDisclosure = useDisclosure();
+
+  const [levels, setLevels] = useState<{
+    occupied: number;
+    powerSave: number;
+    minimum: number;
+  }>({
+    occupied: defaultLevelValues.occupied,
+    powerSave: defaultLevelValues.powerSave,
+    minimum: defaultLevelValues.minimum,
+  });
+
+  const setLevelValue = (key: keyof typeof levels, value: number) => {
+    setLevels((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
+
+  const [type, setType] = useState<'apply' | 'cancel' | undefined>();
 
   const onApply = () => {
-    console.log('============ Luminaire light levels ============');
-    console.log('Occupied:', `${occupied}%`);
-    console.log('Power save:', `${powerSave}%`);
-    console.log('Minimum:', `${minimum}%`);
-    console.log('================================================');
+    setType('apply');
+    modalDisclosure.onOpen();
   };
 
   const onCancel = () => {
-    console.log(
-      'Luminaire light levels have been reset to their original values'
-    );
+    setType('cancel');
+    modalDisclosure.onOpen();
 
-    setOccupied(defaultLevelValues.occupied);
-    setPowerSave(defaultLevelValues.powerSave);
-    setMinimum(defaultLevelValues.minimum);
+    setLevels({
+      occupied: defaultLevelValues.occupied,
+      powerSave: defaultLevelValues.powerSave,
+      minimum: defaultLevelValues.minimum,
+    });
   };
 
   return (
@@ -33,66 +47,66 @@ export const Levels = () => {
       <VStack spacing={10}>
         {/* Occupied */}
         <Box w='full'>
-          <HelvarSlider.Label title='Occupied' value={occupied} />
+          <HelvarSlider.Label title='Occupied' value={levels.occupied} />
           <HelvarSlider.Slider
             label='Occupied'
             defaultValue={defaultLevelValues.occupied}
             onChange={(newValue) => {
-              if (newValue <= powerSave) {
-                setPowerSave(newValue);
+              if (newValue <= levels.powerSave) {
+                setLevelValue('powerSave', newValue);
               }
 
-              if (newValue <= minimum) {
-                setMinimum(newValue);
+              if (newValue <= levels.minimum) {
+                setLevelValue('minimum', newValue);
               }
 
-              setOccupied(newValue);
+              setLevelValue('occupied', newValue);
             }}
-            value={occupied}
+            value={levels.occupied}
             testId='occupied-slider'
           />
         </Box>
 
         {/* Power save */}
         <Box w='full'>
-          <HelvarSlider.Label title='Power save' value={powerSave} />
+          <HelvarSlider.Label title='Power save' value={levels.powerSave} />
           <HelvarSlider.Slider
             label='Power save'
             defaultValue={defaultLevelValues.powerSave}
             onChange={(newValue) => {
-              if (newValue >= occupied) {
-                setOccupied(newValue);
+              if (newValue >= levels.occupied) {
+                setLevelValue('occupied', newValue);
               }
 
-              if (newValue <= minimum) {
-                setMinimum(newValue);
+              if (newValue <= levels.minimum) {
+                setLevelValue('minimum', newValue);
               }
 
-              setPowerSave(newValue);
+              setLevelValue('powerSave', newValue);
             }}
-            value={powerSave}
+            value={levels.powerSave}
             testId='power-save-slider'
           />
         </Box>
 
         {/* Minimum */}
         <Box w='full'>
-          <HelvarSlider.Label title='Minimum' value={minimum} />
+          <HelvarSlider.Label title='Minimum' value={levels.minimum} />
           <HelvarSlider.Slider
             label='Minimum'
             defaultValue={defaultLevelValues.minimum}
             onChange={(newValue) => {
-              if (newValue >= occupied) {
-                setOccupied(newValue);
+              if (newValue >= levels.occupied) {
+                setLevelValue('occupied', newValue);
               }
 
-              if (newValue >= powerSave) {
-                setPowerSave(newValue);
+              if (newValue >= levels.powerSave) {
+                setLevelValue('powerSave', newValue);
               }
 
-              setMinimum(newValue);
+              setLevelValue('minimum', newValue);
             }}
-            value={minimum}
+            value={levels.minimum}
             testId='minimum-slider'
           />
         </Box>
@@ -106,6 +120,16 @@ export const Levels = () => {
           Apply
         </Button>
       </Flex>
+
+      <ResultsModal
+        disclosure={modalDisclosure}
+        description={
+          type === 'cancel'
+            ? 'Luminaire light levels have been reset to their default values'
+            : ''
+        }
+        levels={levels}
+      />
     </>
   );
 };
