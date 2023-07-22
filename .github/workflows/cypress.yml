@@ -2,6 +2,9 @@ name: Cypress Tests
 
 on: pull_request
 
+env:
+  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
