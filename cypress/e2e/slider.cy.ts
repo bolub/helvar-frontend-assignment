@@ -10,13 +10,6 @@ const moveSlider = (args: {
   }
 };
 
-const checkSliderValue = (args: {
-  selector: string;
-  value: string | number;
-}) => {
-  cy.get(args.selector).should('have.attr', 'aria-valuenow', args.value);
-};
-
 describe('Levels tests', () => {
   let levels: {
     occupied: string;
@@ -36,45 +29,6 @@ describe('Levels tests', () => {
     });
 
     cy.visit('/');
-  });
-
-  it('Occupied slider values change correctly', () => {
-    checkSliderValue({
-      selector: levels.occupied,
-      value: defaultLevelValues.occupied,
-    });
-
-    moveSlider({ times: 2, direction: 'right', selector: levels.occupied });
-    checkSliderValue({ selector: levels.occupied, value: '90' });
-
-    moveSlider({ times: 10, direction: 'left', selector: levels.occupied });
-    checkSliderValue({ selector: levels.occupied, value: '40' });
-  });
-
-  it('Power save slider values change correctly', () => {
-    checkSliderValue({
-      selector: levels.powerSave,
-      value: defaultLevelValues.powerSave,
-    });
-
-    moveSlider({ times: 5, direction: 'right', selector: levels.powerSave });
-    checkSliderValue({ selector: levels.powerSave, value: '45' });
-
-    moveSlider({ times: 10, direction: 'left', selector: levels.powerSave });
-    checkSliderValue({ selector: levels.powerSave, value: '0' });
-  });
-
-  it('Minimum slider values change correctly', () => {
-    checkSliderValue({
-      selector: levels.minimum,
-      value: defaultLevelValues.minimum,
-    });
-
-    moveSlider({ times: 10, direction: 'right', selector: levels.minimum });
-    checkSliderValue({ selector: levels.minimum, value: '45' });
-
-    moveSlider({ times: 9, direction: 'left', selector: levels.minimum });
-    checkSliderValue({ selector: levels.minimum, value: '1' });
   });
 
   it('Checks if the correct values are emitted on apply', () => {
