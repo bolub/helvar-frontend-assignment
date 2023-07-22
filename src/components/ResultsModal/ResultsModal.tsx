@@ -66,7 +66,12 @@ export const ResultsModal = ({
           </ModalBody>
 
           <ModalFooter>
-            <Button variant='outline' colorScheme='red' onClick={onClose}>
+            <Button
+              data-cy='close-modal-button'
+              variant='outline'
+              colorScheme='red'
+              onClick={onClose}
+            >
               Close
             </Button>
           </ModalFooter>
