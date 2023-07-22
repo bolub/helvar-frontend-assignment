@@ -51,6 +51,7 @@ const CustomSlider: FC<CustomSliderProps> = ({
 }) => {
   const sliderRef = useRef<HTMLDivElement | null>(null);
 
+  // Handling keyboard navigation
   useEffect(() => {
     const getIncrementalValue = (value: number) => {
       const isMovingUp = value > defaultValue;
