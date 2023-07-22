@@ -23,6 +23,7 @@ interface LabelProps {
 const getNearestStepValue = (value: number) => {
   if (value <= 1) return value;
   if (value === 2) return 5;
+  if (value >= 100) return 100;
 
   return Math.round(value / 5) * 5;
 };
@@ -70,7 +71,7 @@ const CustomSlider: FC<CustomSliderProps> = ({
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (value === 0 || value === 100) return;
+      if (value <= 0 || value > 100) return;
 
       const incrementValue = getIncrementalValue(value);
       const isMovingLeftOrDown =
@@ -85,6 +86,7 @@ const CustomSlider: FC<CustomSliderProps> = ({
       } else if (isMovingRightOrUp) {
         event.preventDefault();
         const newValue = value + incrementValue;
+
         onChange(getNearestStepValue(newValue));
       }
     };
