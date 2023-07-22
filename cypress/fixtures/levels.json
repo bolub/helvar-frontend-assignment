@@ -1,0 +1,5 @@
+{
+  "occupied": "[data-cy=occupied-slider]",
+  "powerSave": "[data-cy=power-save-slider]",
+  "minimum": "[data-cy=minimum-slider]"
+}
