@@ -16,8 +16,6 @@ jobs:
       - name: Vercel Preview
         uses: aaimio/vercel-preview-url-action@v2.2.0
         id: vercel_preview_url
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
