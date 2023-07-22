@@ -14,7 +14,7 @@ jobs:
         uses: zentered/vercel-preview-url@v1.1.9
         id: vercel_preview_url
         env:
-          VERCEL_TOKEN: mxgIOz3xWepIJJAiVw34hyDF
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         with:
           vercel_project_id: 'prj_Q5WiLZY7AU1kkZPt5axluoNaJI31'
 
