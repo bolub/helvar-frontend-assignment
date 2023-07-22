@@ -21,4 +21,4 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          baseUrl: ${{ steps.vercel_preview_url.outputs.vercel_preview_url }}
+          baseUrl: 'https://${{ steps.vercel_preview_url.outputs.preview_url }}'
