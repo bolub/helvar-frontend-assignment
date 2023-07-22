@@ -15,11 +15,17 @@ interface CustomSliderProps {
   testId: string;
   value: number;
 }
-
 interface LabelProps {
   title: string;
   value: number;
 }
+
+const getNearestStepValue = (value: number) => {
+  if (value <= 1) return value;
+  if (value === 2) return 5;
+
+  return Math.round(value / 5) * 5;
+};
 
 const Label: FC<LabelProps> = ({ title, value }) => {
   return (
@@ -42,13 +48,6 @@ const CustomSlider: FC<CustomSliderProps> = ({
   onChange,
   testId,
 }) => {
-  const getNearestStepValue = (value: number) => {
-    if (value <= 1) return value;
-    if (value === 2) return 5;
-
-    return Math.round(value / 5) * 5;
-  };
-
   const sliderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
