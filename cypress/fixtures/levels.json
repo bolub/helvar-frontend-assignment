@@ -1,5 +1,11 @@
 {
   "occupied": "[data-cy=occupied-slider]",
   "powerSave": "[data-cy=power-save-slider]",
-  "minimum": "[data-cy=minimum-slider]"
+  "minimum": "[data-cy=minimum-slider]",
+  "applyButton": "[data-cy=apply]",
+  "cancelButton": "[data-cy=cancel]",
+  "occupiedValue": "[data-cy=occupied-value]",
+  "powerSaveValue": "[data-cy=power-save-value]",
+  "minimumValue": "[data-cy=minimum-value]",
+  "closeModalButton": "[data-cy=close-modal-button]"
 }
