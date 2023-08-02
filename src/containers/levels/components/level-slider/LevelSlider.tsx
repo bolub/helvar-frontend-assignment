@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import { HelvarSlider } from './helvar-slider/HelvarSlider';
+import { CustomSlider } from '../../../../components/custom-slider/CustomSlider';
 
 export const LevelSlider = ({
   title,
@@ -16,8 +16,8 @@ export const LevelSlider = ({
 }) => {
   return (
     <Box w='full'>
-      <HelvarSlider.Label title={title} value={value} />
-      <HelvarSlider.Slider
+      <CustomSlider.Label title={title} value={value} />
+      <CustomSlider.Slider
         label={title}
         defaultValue={defaultValue}
         onChange={onChange}

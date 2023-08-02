@@ -2,7 +2,7 @@ import { VStack, Flex, Button, useDisclosure } from '@chakra-ui/react';
 import { useState } from 'react';
 import { defaultLevelValues } from '../../utils/levels';
 import { ResultsModal } from './components/results-modal/ResultsModal';
-import { LevelSlider } from './components/LevelSlider';
+import { LevelSlider } from './components/level-slider/LevelSlider';
 
 export const Levels = () => {
   const modalDisclosure = useDisclosure();
@@ -45,7 +45,6 @@ export const Levels = () => {
   return (
     <>
       <VStack spacing={10}>
-        {/* Occupied */}
         <LevelSlider
           title='Occupied'
           value={levels.occupied}
@@ -62,7 +61,6 @@ export const Levels = () => {
           testId='occupied-slider'
         />
 
-        {/* Power save */}
         <LevelSlider
           title='Power Save'
           defaultValue={defaultLevelValues.powerSave}
@@ -81,7 +79,6 @@ export const Levels = () => {
           testId='power-save-slider'
         />
 
-        {/* Minimum */}
         <LevelSlider
           title='Minimum'
           defaultValue={defaultLevelValues.minimum}

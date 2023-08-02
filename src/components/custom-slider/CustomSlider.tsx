@@ -28,7 +28,7 @@ const getNearestStepValue = (value: number) => {
   return Math.round(value / 5) * 5;
 };
 
-const Label: FC<LabelProps> = ({ title, value }) => {
+const LabelComponent: FC<LabelProps> = ({ title, value }) => {
   return (
     <Flex justifyContent='space-between' w='100%' alignItems='center'>
       <Text fontWeight='medium' fontSize='lg'>
@@ -42,7 +42,7 @@ const Label: FC<LabelProps> = ({ title, value }) => {
   );
 };
 
-const CustomSlider: FC<CustomSliderProps> = ({
+const CustomSliderComponent: FC<CustomSliderProps> = ({
   label,
   value,
   defaultValue,
@@ -121,7 +121,7 @@ const CustomSlider: FC<CustomSliderProps> = ({
   );
 };
 
-export const HelvarSlider = {
-  Label,
-  Slider: CustomSlider,
+export const CustomSlider = {
+  Label: LabelComponent,
+  Slider: CustomSliderComponent,
 };
