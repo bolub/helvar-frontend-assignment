@@ -1,8 +1,8 @@
 import { VStack, Box, Flex, Button, useDisclosure } from '@chakra-ui/react';
-import { HelvarSlider } from '../../components/helvar-slider/HelvarSlider';
+import { HelvarSlider } from './components/helvar-slider/HelvarSlider';
 import { useState } from 'react';
 import { defaultLevelValues } from '../../utils/levels';
-import { ResultsModal } from '../../components/results-modal/ResultsModal';
+import { ResultsModal } from './components/results-modal/ResultsModal';
 
 export const Levels = () => {
   const modalDisclosure = useDisclosure();
