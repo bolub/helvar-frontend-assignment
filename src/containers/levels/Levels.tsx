@@ -7,6 +7,7 @@ import { LevelSlider } from './components/level-slider/LevelSlider';
 export const Levels = () => {
   const modalDisclosure = useDisclosure();
 
+  const [type, setType] = useState<'apply' | 'cancel' | undefined>();
   const [levels, setLevels] = useState<{
     occupied: number;
     powerSave: number;
@@ -16,8 +17,6 @@ export const Levels = () => {
     powerSave: defaultLevelValues.powerSave,
     minimum: defaultLevelValues.minimum,
   });
-
-  const [type, setType] = useState<'apply' | 'cancel' | undefined>();
 
   const setLevelValue = (key: keyof typeof levels, value: number) => {
     setLevels((prev) => ({
