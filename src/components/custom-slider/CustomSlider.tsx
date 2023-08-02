@@ -7,6 +7,7 @@ import {
   SliderFilledTrack,
   SliderThumb,
 } from '@chakra-ui/react';
+import { getNearestStepValue } from './utils';
 
 interface CustomSliderProps {
   defaultValue: number;
@@ -19,14 +20,6 @@ interface LabelProps {
   title: string;
   value: number;
 }
-
-const getNearestStepValue = (value: number) => {
-  if (value <= 1) return value;
-  if (value === 2) return 5;
-  if (value >= 100) return 100;
-
-  return Math.round(value / 5) * 5;
-};
 
 const LabelComponent: FC<LabelProps> = ({ title, value }) => {
   return (
