@@ -1,8 +1,8 @@
-import { VStack, Box, Flex, Button, useDisclosure } from '@chakra-ui/react';
-import { HelvarSlider } from './components/helvar-slider/HelvarSlider';
+import { VStack, Flex, Button, useDisclosure } from '@chakra-ui/react';
 import { useState } from 'react';
 import { defaultLevelValues } from '../../utils/levels';
 import { ResultsModal } from './components/results-modal/ResultsModal';
+import { LevelSlider } from './components/LevelSlider';
 
 export const Levels = () => {
   const modalDisclosure = useDisclosure();
@@ -46,70 +46,59 @@ export const Levels = () => {
     <>
       <VStack spacing={10}>
         {/* Occupied */}
-        <Box w='full'>
-          <HelvarSlider.Label title='Occupied' value={levels.occupied} />
-          <HelvarSlider.Slider
-            label='Occupied'
-            defaultValue={defaultLevelValues.occupied}
-            onChange={(newValue) => {
-              if (newValue <= levels.powerSave) {
-                setLevelValue('powerSave', newValue);
-              }
-
-              if (newValue <= levels.minimum) {
-                setLevelValue('minimum', newValue);
-              }
-
-              setLevelValue('occupied', newValue);
-            }}
-            value={levels.occupied}
-            testId='occupied-slider'
-          />
-        </Box>
+        <LevelSlider
+          title='Occupied'
+          value={levels.occupied}
+          defaultValue={defaultLevelValues.occupied}
+          onChange={(newValue) => {
+            if (newValue <= levels.powerSave) {
+              setLevelValue('powerSave', newValue);
+            }
+            if (newValue <= levels.minimum) {
+              setLevelValue('minimum', newValue);
+            }
+            setLevelValue('occupied', newValue);
+          }}
+          testId='occupied-slider'
+        />
 
         {/* Power save */}
-        <Box w='full'>
-          <HelvarSlider.Label title='Power save' value={levels.powerSave} />
-          <HelvarSlider.Slider
-            label='Power save'
-            defaultValue={defaultLevelValues.powerSave}
-            onChange={(newValue) => {
-              if (newValue >= levels.occupied) {
-                setLevelValue('occupied', newValue);
-              }
+        <LevelSlider
+          title='Power Save'
+          defaultValue={defaultLevelValues.powerSave}
+          onChange={(newValue) => {
+            if (newValue >= levels.occupied) {
+              setLevelValue('occupied', newValue);
+            }
 
-              if (newValue <= levels.minimum) {
-                setLevelValue('minimum', newValue);
-              }
+            if (newValue <= levels.minimum) {
+              setLevelValue('minimum', newValue);
+            }
 
-              setLevelValue('powerSave', newValue);
-            }}
-            value={levels.powerSave}
-            testId='power-save-slider'
-          />
-        </Box>
+            setLevelValue('powerSave', newValue);
+          }}
+          value={levels.powerSave}
+          testId='power-save-slider'
+        />
 
         {/* Minimum */}
-        <Box w='full'>
-          <HelvarSlider.Label title='Minimum' value={levels.minimum} />
-          <HelvarSlider.Slider
-            label='Minimum'
-            defaultValue={defaultLevelValues.minimum}
-            onChange={(newValue) => {
-              if (newValue >= levels.occupied) {
-                setLevelValue('occupied', newValue);
-              }
+        <LevelSlider
+          title='Minimum'
+          defaultValue={defaultLevelValues.minimum}
+          onChange={(newValue) => {
+            if (newValue >= levels.occupied) {
+              setLevelValue('occupied', newValue);
+            }
 
-              if (newValue >= levels.powerSave) {
-                setLevelValue('powerSave', newValue);
-              }
+            if (newValue >= levels.powerSave) {
+              setLevelValue('powerSave', newValue);
+            }
 
-              setLevelValue('minimum', newValue);
-            }}
-            value={levels.minimum}
-            testId='minimum-slider'
-          />
-        </Box>
+            setLevelValue('minimum', newValue);
+          }}
+          value={levels.minimum}
+          testId='minimum-slider'
+        />
       </VStack>
 
       <Flex mt={16} justifyContent='space-between' w='full'>
