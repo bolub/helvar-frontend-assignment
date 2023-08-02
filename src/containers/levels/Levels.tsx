@@ -4,6 +4,25 @@ import { defaultLevelValues } from '../../utils/levels';
 import { ResultsModal } from './components/results-modal/ResultsModal';
 import { LevelSlider } from './components/level-slider/LevelSlider';
 
+const ActionButtons = ({
+  onApply,
+  onCancel,
+}: {
+  onApply: () => void;
+  onCancel: () => void;
+}) => {
+  return (
+    <Flex mt={16} justifyContent='space-between' w='full'>
+      <Button data-cy='cancel' size='lg' onClick={onCancel}>
+        Cancel
+      </Button>
+      <Button data-cy='apply' size='lg' colorScheme='red' onClick={onApply}>
+        Apply
+      </Button>
+    </Flex>
+  );
+};
+
 export const Levels = () => {
   const modalDisclosure = useDisclosure();
 
@@ -23,22 +42,6 @@ export const Levels = () => {
       ...prev,
       [key]: value,
     }));
-  };
-
-  const onApply = () => {
-    setType('apply');
-    modalDisclosure.onOpen();
-  };
-
-  const onCancel = () => {
-    setType('cancel');
-    modalDisclosure.onOpen();
-
-    setLevels({
-      occupied: defaultLevelValues.occupied,
-      powerSave: defaultLevelValues.powerSave,
-      minimum: defaultLevelValues.minimum,
-    });
   };
 
   return (
@@ -97,14 +100,22 @@ export const Levels = () => {
         />
       </VStack>
 
-      <Flex mt={16} justifyContent='space-between' w='full'>
-        <Button data-cy='cancel' size='lg' onClick={onCancel}>
-          Cancel
-        </Button>
-        <Button data-cy='apply' size='lg' colorScheme='red' onClick={onApply}>
-          Apply
-        </Button>
-      </Flex>
+      <ActionButtons
+        onApply={() => {
+          setType('apply');
+          modalDisclosure.onOpen();
+        }}
+        onCancel={() => {
+          setType('cancel');
+          modalDisclosure.onOpen();
+
+          setLevels({
+            occupied: defaultLevelValues.occupied,
+            powerSave: defaultLevelValues.powerSave,
+            minimum: defaultLevelValues.minimum,
+          });
+        }}
+      />
 
       <ResultsModal
         disclosure={modalDisclosure}
