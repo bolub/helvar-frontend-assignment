@@ -17,14 +17,14 @@ export const Levels = () => {
     minimum: defaultLevelValues.minimum,
   });
 
+  const [type, setType] = useState<'apply' | 'cancel' | undefined>();
+
   const setLevelValue = (key: keyof typeof levels, value: number) => {
     setLevels((prev) => ({
       ...prev,
       [key]: value,
     }));
   };
-
-  const [type, setType] = useState<'apply' | 'cancel' | undefined>();
 
   const onApply = () => {
     setType('apply');
