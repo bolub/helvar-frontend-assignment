@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import { CustomSlider } from '../../../../components/custom-slider/CustomSlider';
+import { CustomSlider } from 'src/components/custom-slider/CustomSlider';
 
 export const LevelSlider = ({
   title,

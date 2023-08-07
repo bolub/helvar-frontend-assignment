@@ -1,8 +1,8 @@
 import { VStack, Flex, Button, useDisclosure } from '@chakra-ui/react';
 import { useState } from 'react';
-import { defaultLevelValues } from '../../utils/levels';
-import { ResultsModal } from './components/results-modal/ResultsModal';
-import { LevelSlider } from './components/level-slider/LevelSlider';
+import { defaultLevelValues } from 'src/utils/levels';
+import { ResultsModal } from 'src/containers/levels/components/results-modal/ResultsModal';
+import { LevelSlider } from 'src/containers/levels/components/level-slider/LevelSlider';
 
 const ActionButtons = ({
   onApply,
@@ -51,7 +51,7 @@ export const Levels = () => {
           title='Occupied'
           value={levels.occupied}
           defaultValue={defaultLevelValues.occupied}
-          onChange={(newValue) => {
+          onChange={(newValue: number) => {
             if (newValue <= levels.powerSave) {
               setLevelValue('powerSave', newValue);
             }
@@ -66,7 +66,7 @@ export const Levels = () => {
         <LevelSlider
           title='Power Save'
           defaultValue={defaultLevelValues.powerSave}
-          onChange={(newValue) => {
+          onChange={(newValue: number) => {
             if (newValue >= levels.occupied) {
               setLevelValue('occupied', newValue);
             }
@@ -84,7 +84,7 @@ export const Levels = () => {
         <LevelSlider
           title='Minimum'
           defaultValue={defaultLevelValues.minimum}
-          onChange={(newValue) => {
+          onChange={(newValue: number) => {
             if (newValue >= levels.occupied) {
               setLevelValue('occupied', newValue);
             }

@@ -1,5 +1,5 @@
 import { Container, chakra } from '@chakra-ui/react';
-import { Levels } from './containers/levels/Levels';
+import { Levels } from 'src/containers/levels/Levels';
 
 function App() {
   return (

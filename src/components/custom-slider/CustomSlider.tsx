@@ -7,7 +7,10 @@ import {
   SliderFilledTrack,
   SliderThumb,
 } from '@chakra-ui/react';
-import { getNearestStepValue, handleSliderKeyDown } from './utils';
+import {
+  getNearestStepValue,
+  handleSliderKeyDown,
+} from 'src/components/custom-slider/utils';
 
 interface CustomSliderProps {
   defaultValue: number;
