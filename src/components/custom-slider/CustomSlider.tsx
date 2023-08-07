@@ -68,7 +68,7 @@ const CustomSliderComponent: FC<CustomSliderProps> = ({
       colorScheme='red'
       defaultValue={defaultValue}
       value={value}
-      onChange={(value) => onChange(getNearestStepValue(value))}
+      onChange={(value: number) => onChange(getNearestStepValue(value))}
       max={100}
       min={0}
       data-cy={`${testId}-container`}
