@@ -1,13 +1,15 @@
+import { Container, Title } from '@mantine/core';
+import { Levels } from './containers/levels/Levels';
+
 function App() {
   return (
-    <>
-      <h1>Hello from vite</h1>
-      <p
-        style={{
-          color: 'red',
-        }}
-      ></p>
-    </>
+    <Container size='xs' mt='200px'>
+      <Title order={1} size='24px'>
+        Set levels
+      </Title>
+
+      <Levels />
+    </Container>
   );
 }
 
