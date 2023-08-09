@@ -8,7 +8,7 @@ export const getIncrementalValue = ({
   // So we can skip all values between 0 and 1
   if (value <= 1) return 1;
 
-  // So we can jump from 1 -> 2 -> 5
+  // So we can jump from 2 -> 5
   if (isMovingUp && value === 2) return 3;
 
   // So we can jump from 5 -> 1 and from 5 -> 10 (getNearestStep value handles this)
