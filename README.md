@@ -12,5 +12,6 @@
 ## Selected Dependencies
 - [React](https://react.dev/): SPA Library 
 - [Chakra UI React](https://chakra-ui.com/): A UI component library
-- [Vitejs.dev](https://vitejs.dev/): Tooling to help setup the project
+- [Vitejs.dev](https://vitejs.dev/): Tooling to help set up the react project
+- [Vitest.dev](https://vitest.dev/): For unit tests
 - [Cypress](https://cypress.io/): For e2e tests
