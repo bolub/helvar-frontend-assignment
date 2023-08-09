@@ -32,44 +32,29 @@ describe('getNearestStepValue', () => {
 });
 
 describe('getIncrementalValue', () => {
-  describe('When moving up', () => {
-    it('returns 1 for input value less than or equal to 1', () => {
-      expect(
-        getIncrementalValue({
-          value: 1,
-          isMovingUp: true,
-          isMovingDown: false,
-        })
-      ).toBe(1);
-
-      expect(
-        getIncrementalValue({
-          value: 0,
-          isMovingUp: true,
-          isMovingDown: false,
-        })
-      ).toBe(1);
-    });
-
-    it('returns 3 for input value of 2 ', () => {
-      expect(
-        getIncrementalValue({
-          value: 2,
-          isMovingUp: true,
-          isMovingDown: false,
-        })
-      ).toBe(3);
-    });
-  });
-
-  it('returns 3 when moving down and input value is less than or equal to 1 ', () => {
+  it('returns 1 for input value less than or equal to 1', () => {
     expect(
       getIncrementalValue({
         value: 1,
-        isMovingUp: false,
-        isMovingDown: true,
+        isMovingUp: true,
       })
     ).toBe(1);
+
+    expect(
+      getIncrementalValue({
+        value: 0,
+        isMovingUp: true,
+      })
+    ).toBe(1);
+  });
+
+  it('returns 3 for input value of 2 when moving up/right the slider', () => {
+    expect(
+      getIncrementalValue({
+        value: 2,
+        isMovingUp: true,
+      })
+    ).toBe(3);
   });
 
   it('returns 4 when moving in any direction and input is 5', () => {
@@ -77,7 +62,6 @@ describe('getIncrementalValue', () => {
       getIncrementalValue({
         value: 5,
         isMovingUp: false,
-        isMovingDown: true,
       })
     ).toBe(4);
 
@@ -85,7 +69,6 @@ describe('getIncrementalValue', () => {
       getIncrementalValue({
         value: 5,
         isMovingUp: true,
-        isMovingDown: false,
       })
     ).toBe(4);
   });
@@ -95,7 +78,6 @@ describe('getIncrementalValue', () => {
       getIncrementalValue({
         value: 20,
         isMovingUp: false,
-        isMovingDown: true,
       })
     ).toBe(5);
 
@@ -103,7 +85,6 @@ describe('getIncrementalValue', () => {
       getIncrementalValue({
         value: 20,
         isMovingUp: true,
-        isMovingDown: false,
       })
     ).toBe(5);
   });
