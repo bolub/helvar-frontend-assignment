@@ -36,14 +36,12 @@ describe('getIncrementalValue', () => {
     expect(
       getIncrementalValue({
         value: 1,
-        isMovingUp: true,
       })
     ).toBe(1);
 
     expect(
       getIncrementalValue({
         value: 0,
-        isMovingUp: true,
       })
     ).toBe(1);
   });
@@ -61,7 +59,6 @@ describe('getIncrementalValue', () => {
     expect(
       getIncrementalValue({
         value: 5,
-        isMovingUp: false,
       })
     ).toBe(4);
 
@@ -77,7 +74,6 @@ describe('getIncrementalValue', () => {
     expect(
       getIncrementalValue({
         value: 20,
-        isMovingUp: false,
       })
     ).toBe(5);
 

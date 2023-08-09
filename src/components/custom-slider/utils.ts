@@ -3,7 +3,7 @@ export const getIncrementalValue = ({
   isMovingUp,
 }: {
   value: number;
-  isMovingUp: boolean;
+  isMovingUp?: boolean;
 }) => {
   // So we can skip all values between 0 and 1
   if (value <= 1) return 1;
