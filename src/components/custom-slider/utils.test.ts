@@ -33,55 +33,21 @@ describe('getNearestStepValue', () => {
 
 describe('getIncrementalValue', () => {
   it('returns 1 for input value less than or equal to 1', () => {
-    expect(
-      getIncrementalValue({
-        value: 1,
-      })
-    ).toBe(1);
-
-    expect(
-      getIncrementalValue({
-        value: 0,
-      })
-    ).toBe(1);
+    expect(getIncrementalValue({ value: 1 })).toBe(1);
+    expect(getIncrementalValue({ value: 0 })).toBe(1);
   });
 
   it('returns 3 for input value of 2 when moving up/right the slider', () => {
-    expect(
-      getIncrementalValue({
-        value: 2,
-        isMovingUp: true,
-      })
-    ).toBe(3);
+    expect(getIncrementalValue({ value: 2, isMovingUp: true })).toBe(3);
   });
 
   it('returns 4 when moving in any direction and input is 5', () => {
-    expect(
-      getIncrementalValue({
-        value: 5,
-      })
-    ).toBe(4);
-
-    expect(
-      getIncrementalValue({
-        value: 5,
-        isMovingUp: true,
-      })
-    ).toBe(4);
+    expect(getIncrementalValue({ value: 5 })).toBe(4);
+    expect(getIncrementalValue({ value: 5, isMovingUp: true })).toBe(4);
   });
 
   it('returns 5 when moving in any direction and input is not specifically handled (a multiple of 5)', () => {
-    expect(
-      getIncrementalValue({
-        value: 20,
-      })
-    ).toBe(5);
-
-    expect(
-      getIncrementalValue({
-        value: 20,
-        isMovingUp: true,
-      })
-    ).toBe(5);
+    expect(getIncrementalValue({ value: 20 })).toBe(5);
+    expect(getIncrementalValue({ value: 20, isMovingUp: true })).toBe(5);
   });
 });
