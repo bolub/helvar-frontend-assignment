@@ -53,7 +53,7 @@ const CustomSliderComponent: FC<CustomSliderProps> = ({
 
     if (sliderElement) {
       const handleKeyDown = (event: KeyboardEvent) => {
-        handleSliderKeyDown(event, value, defaultValue, onChange);
+        handleSliderKeyDown(event, value, onChange);
       };
 
       sliderElement.addEventListener('keydown', handleKeyDown);
